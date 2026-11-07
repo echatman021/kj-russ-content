@@ -1,0 +1,299 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>KJ Russ Content Strategy</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/icon-192.png">
+<meta name="theme-color" content="#0d4f5a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KJ Russ">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]{display:none!important}</style>
+<link id="fontlink" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700&display=swap">
+<style id="app-style">
+/* Layout: deep-teal workspace (matches Brooklyn Body OS). Sticky blurred brand bar + pill tabs; white cards with the clipped corner; bottom bar on phones. */
+:root{
+  --bg:#0d4a55; --page:linear-gradient(170deg,#11636e 0%,#0d4f5a 55%,#0a3f49 100%); --band:#11636e; --head:rgba(14,84,95,.94);
+  --panel:#ffffff; --panel-2:#eef4f3; --lane:#e2eceb; --line:#d3e1df; --fg:#0b2e36; --muted:#4f6a6e;
+  --hl:#ffb703; --hl-ink:#0b2e36; --orange:#c25a00; --on:#ffffff; --on-2:rgba(255,255,255,.74);
+  --hi:#c2562f; --mid:#946600; --lo:#2f8f4e; --ink-tile:#0b2e36;
+  --r:22px 22px 22px 7px; --r-sm:14px 14px 14px 4px;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-cap:"Barlow Condensed","Arial Narrow",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#07242a; --page:linear-gradient(170deg,#0b3239 0%,#07242a 100%); --band:#0b3239; --head:rgba(9,40,46,.94);
+  --panel:#163a42; --panel-2:#113037; --lane:#113037; --line:#245059; --fg:#e8edf2; --muted:#9aa7b4;
+  --hl:#ffb703; --hl-ink:#0b2e36; --orange:#ff9a2e; --hi:#f0956f; --mid:#f2c66d; --lo:#7fcf95; --ink-tile:#051a1f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#07242a; --page:linear-gradient(170deg,#0b3239 0%,#07242a 100%); --band:#0b3239; --head:rgba(9,40,46,.94);
+  --panel:#163a42; --panel-2:#113037; --lane:#113037; --line:#245059; --fg:#e8edf2; --muted:#9aa7b4;
+  --hl:#ffb703; --hl-ink:#0b2e36; --orange:#ff9a2e; --hi:#f0956f; --mid:#f2c66d; --lo:#7fcf95; --ink-tile:#051a1f; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{background:var(--page);background-attachment:fixed;min-height:100vh;font:15px/1.5 var(--f-body);color:var(--fg)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1120px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--head);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);color:#fff}
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px 10px}
+.brand{display:flex;flex-direction:column;min-width:0}
+.brand small{font:700 11px var(--f-cap);letter-spacing:.16em;text-transform:uppercase;color:var(--on-2)}
+.brand b{font:800 22px/1.1 var(--f-body);letter-spacing:-.01em;color:#fff}
+.actions{display:flex;gap:6px;flex:none}
+button{font:600 13px var(--f-body);border-radius:12px 12px 12px 4px;padding:8px 13px;cursor:pointer;border:1px solid var(--line);background:var(--panel-2);color:var(--fg)}
+header button{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.2)}
+header button:hover{border-color:rgba(255,255,255,.5)}
+header button.primary,button.primary{background:var(--hl);color:var(--hl-ink);border-color:var(--hl)}
+header button[aria-pressed="true"]{background:#fff;color:#0b2e36;border-color:#fff}
+button:focus-visible,[contenteditable]:focus-visible,summary:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+nav.tabs{display:flex;gap:6px;padding-bottom:10px;overflow-x:auto;scrollbar-width:none}
+.tab{background:none;border:1px solid transparent;color:var(--on-2);font:600 13.5px var(--f-body);border-radius:14px 14px 14px 4px;padding:8px 14px;white-space:nowrap}
+.tab:hover{color:#fff}
+.tab[aria-selected="true"]{background:var(--hl);color:var(--hl-ink)}
+main{padding-block:22px 90px;color:var(--on);display:flex;flex-direction:column;gap:18px}
+.hello h1{font:800 clamp(30px,6vw,44px)/1.05 var(--f-body);letter-spacing:-.03em;color:#fff;margin:0 0 10px;text-wrap:balance}
+.hello p{margin:0;max-width:66ch;color:var(--hl);font-weight:600}
+.cap{font:700 12px var(--f-cap);letter-spacing:.12em;text-transform:uppercase}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 12.5px var(--f-body);border-radius:10px;padding:6px 11px;border:1px solid rgba(255,255,255,.28);background:none;color:#fff}
+.chip[aria-pressed="true"]{background:var(--hl);color:var(--hl-ink);border-color:var(--hl)}
+.chip .code{font:700 11px var(--f-cap);letter-spacing:.08em;opacity:.75;margin-right:5px}
+.lane{background:var(--lane);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:12px;color:var(--fg)}
+.lanehead{display:flex;flex-direction:column;gap:4px;padding:2px 4px}
+.lanehead .row1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lanehead .code{font:700 12px var(--f-body);background:var(--fg);color:var(--panel);border-radius:10px;padding:2px 9px}
+.lanehead h2{margin:0;font:800 20px/1.15 var(--f-body);letter-spacing:-.01em}
+.lanehead .aud{font:700 11px var(--f-cap);letter-spacing:.1em;text-transform:uppercase;color:var(--orange)}
+.lanehead p{margin:0;color:var(--muted);max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;align-items:start}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);position:relative;overflow:hidden;min-width:0}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--stripe,var(--line))}
+.card.High{--stripe:var(--hi)} .card.Med{--stripe:var(--mid)} .card.Steady{--stripe:var(--lo)}
+.card>summary,.card>.ch{list-style:none;cursor:pointer;padding:14px 14px 12px 19px;display:flex;flex-direction:column;gap:7px}
+.card>.ch{cursor:default}
+.card>summary::-webkit-details-marker{display:none}
+.card h3{margin:0;font:700 16px/1.3 var(--f-body)}
+.meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pill{font:600 11px var(--f-body);border-radius:8px;padding:3px 8px;border:1px solid var(--line);color:var(--muted)}
+.pill.lev{color:var(--stripe);border-color:color-mix(in srgb,var(--stripe) 45%,transparent)}
+.pill.prog{color:var(--fg)}
+.hook{margin:0;font-style:italic;color:var(--fg);border-left:3px solid var(--orange);padding-left:8px}
+.hook b{font:700 10px var(--f-cap);letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-style:normal;margin-right:4px}
+.cb{padding:4px 14px 16px 19px;display:flex;flex-direction:column;gap:10px;border-top:1px dashed var(--line)}
+.cb h4{margin:10px 0 4px;font:700 11.5px var(--f-cap);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.shots{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.shots li{display:grid;grid-template-columns:22px 1fr auto;gap:6px;align-items:start;padding:3px 0}
+.shots input{margin-top:3px;width:17px;height:17px;accent-color:var(--fg)}
+.shots li.done .st{text-decoration:line-through;color:var(--muted)}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px}
+dt{font:700 11px var(--f-cap);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.why{margin:0;padding:10px 12px;background:var(--panel-2);border-radius:var(--r-sm);font-size:14px}
+.why b{font:700 10px var(--f-cap);letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-right:4px}
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.tile{background:var(--panel);color:var(--fg);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.tile.ink{background:var(--ink-tile);color:#fff}
+.tile .cap{color:var(--orange)} .tile.ink .cap{color:var(--hl)}
+.tile h3{margin:0;font:800 20px/1.15 var(--f-body)}
+.tile ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:5px}
+.yield{font-weight:700;color:var(--lo)} .tile.ink .yield{color:var(--hl)}
+.tablewrap{overflow-x:auto;background:var(--panel);border-radius:var(--r);color:var(--fg)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:14px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 11.5px var(--f-cap);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.note{color:var(--on-2);font-size:13.5px;margin:0;max-width:70ch}
+/* edit mode */
+.editing [data-p]{outline:1px dashed color-mix(in srgb,var(--orange) 55%,transparent);outline-offset:2px;border-radius:4px;cursor:text;min-width:2ch;display:inline-block}
+.editing .hello [data-p],.editing .hook [data-p]{display:inline}
+.editing [data-p]:empty::before{content:"Type here";color:var(--muted);font-style:italic}
+.editbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:18;background:var(--ink-tile);color:#fff;border-radius:20px 20px 20px 6px;padding:8px 8px 8px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:13.5px;max-width:calc(100% - 32px)}
+.editbar button{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+.editbar button.primary{background:var(--hl);color:var(--hl-ink);border-color:var(--hl)}
+.mini{font:600 12px var(--f-body);padding:4px 9px;border-radius:9px 9px 9px 3px}
+.x{background:none;border:0;color:var(--muted);font-size:15px;padding:0 4px;line-height:1}
+.x:hover{color:var(--hi)}
+.addrow{display:flex;gap:6px;flex-wrap:wrap}
+select.lv{font:600 12px var(--f-body);border-radius:8px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);padding:3px 6px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:#fff;color:#0b2e36;padding:9px 16px;border-radius:999px;font-weight:600;font-size:13px;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+/* notes */
+.notes{display:flex;flex-direction:column;gap:6px;border-top:1px dashed var(--line);padding-top:10px}
+.notes h4{margin:0!important}
+.nl{display:flex;flex-direction:column;gap:6px}
+.nt{background:var(--panel-2);border-radius:var(--r-sm);padding:8px 10px;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.nt small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.notes textarea,.gnote textarea{width:100%;min-height:64px;resize:vertical;border:1px solid var(--line);border-radius:12px 12px 12px 4px;background:var(--panel-2);color:var(--fg);padding:9px 10px;font:16px var(--f-body)}
+.nrow{display:flex;justify-content:flex-end}
+.gnote{background:var(--panel);color:var(--fg);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:8px}
+.gnote h3{margin:0;font:800 17px var(--f-body)}
+.gnote p{margin:0;color:var(--muted);font-size:13.5px}
+/* phone */
+.bbar{display:none}
+@media (max-width:760px){
+  nav.tabs{display:none}
+  .brand b{font-size:18px}
+  .bbar{display:flex;position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:16;background:var(--panel);border-radius:20px 20px 20px 6px;padding:6px;gap:2px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .bbar button{flex:1;min-width:0;border:0;background:none;color:var(--muted);border-radius:14px 14px 14px 4px;padding:11px 0;font:700 11.5px var(--f-cap);letter-spacing:.08em;text-transform:uppercase}
+  .bbar button[aria-current="page"]{background:var(--fg);color:var(--panel)}
+  main{padding-bottom:130px}
+  .editbar{bottom:calc(82px + env(safe-area-inset-bottom,0px))}
+  .toast{bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+  .grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head><body>
+<form name="russ-notes" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="idea"><textarea name="note"></textarea></form>
+<div id="app"></div>
+<script id="state" type="application/json">{"title":"KJ Russ Content Strategy","sub":"He sees what's behind the walls. Inspector, plumber, electrician, landlord, flipper, church owner, Howard grad, family man. Every niche below is a different wall.","niches":[{"code":"BW","name":"Behind the Walls","aud":"Homebuyers","desc":"Inspection content. His home turf and the reason anyone listens. Makes his professional eye the brand.","ideas":[{"t":"In the Field with Kj Russ","lev":"High","hook":"This house looked perfect at the open house. Watch what I find in 20 minutes.","fmt":"8–12 min YouTube + 3–4 shorts","loc":"A real inspection (client OK'd on camera, no address shown)","time":"Ride-along 2–3 hrs · edit 1 wk","gear":"GoPro chest mount, wireless lav, small LED, gimbal","why":"One shoot makes the long video and every finding becomes its own short.","shots":[{"t":"Arrival wide: truck, gear bag, house exterior","d":false},{"t":"Him walking the exterior, narrating what he scans first","d":false},{"t":"GoPro chest-cam POV in attic / crawlspace","d":false},{"t":"Flashlight close-ups on each finding","d":false},{"t":"To-camera explanation at each finding","d":false},{"t":"Report on tablet: insert of him writing it up","d":false},{"t":"Exit line: 'Would you have caught that?'","d":false}]},{"t":"Russ Approved","lev":"High","hook":"The first thing I check in every house isn't the front door.","fmt":"30–60 sec shorts, recurring","loc":"Any inspection or flip; batch on Field Day","time":"10 min per short on site · edit same week","gear":"Phone or B-cam, lav","why":"Named, repeatable format. Viewers learn to wait for the stamp.","shots":[{"t":"Cold open: his hand on the thing (no explanation yet)","d":false},{"t":"Medium: him naming it","d":false},{"t":"Close-up of good vs. bad version","d":false},{"t":"His thought process in one sentence","d":false},{"t":"Stamp graphic: RUSS APPROVED / NOT APPROVED","d":false}]},{"t":"Before You Sign","lev":"Med","hook":"Your inspection report is a negotiation tool. Most buyers read it like a receipt.","fmt":"3–5 min talking head + inserts","loc":"His office or kitchen table with a printed report","time":"1 hr · edit 3 days","gear":"2 cams, lav, top-down arm","why":"Proactive education. Gets saved and shared by buyers.","shots":[{"t":"Seated two-camera interview","d":false},{"t":"Top-down: highlighting a report","d":false},{"t":"Insert: phone call / email to an agent (re-enacted)","d":false},{"t":"Proof shot from an inspection that backs the point","d":false}]}]},{"code":"RN","name":"Russ Runs the Numbers","aud":"Investors","desc":"Flips and deal math. The 'real estate guy' he first wanted to be known as.","ideas":[{"t":"Deal on the Wall","lev":"High","hook":"Everybody sees the kitchen. I see the number under it.","fmt":"6–10 min breakdown + 2 shorts","loc":"Inside a current flip, whiteboard taped to the studs","time":"1.5 hrs · edit 1 wk","gear":"Whiteboard + markers, 2 cams, lav","why":"Shows his thinking, which is what investors pay attention to. Confirm which numbers he's OK showing.","shots":[{"t":"Wide: him walking in, calls the price he paid","d":false},{"t":"Whiteboard: purchase / rehab / holding / ARV written live","d":false},{"t":"Cutaways to each room as he prices the work","d":false},{"t":"Close-up on the final margin number","d":false},{"t":"Lesson line: why he takes or passes","d":false}]},{"t":"Flip Progress Log","lev":"Steady","hook":"Day 1 vs. day 30. Same house.","fmt":"Monthly 60–90 sec update","loc":"Same flip, same tripod mark each visit","time":"20 min per visit · edit 1 day","gear":"Tripod, tape mark on floor","why":"Cheap to make, builds an ongoing story. Feeds the Monthly Update.","shots":[{"t":"Locked-off shot from the same mark every visit","d":false},{"t":"One sentence from him on what changed","d":false},{"t":"One problem found this month","d":false},{"t":"Final before/after split screen","d":false}]},{"t":"Would You Buy It?","lev":"Med","hook":"I'll give you the price and the problems. You tell me if it's a deal.","fmt":"Short with a comment prompt; reveal in part 2","loc":"Any property he's evaluating","time":"30 min · edit 2 days","gear":"Phone or B-cam","why":"Comments drive reach and give you his audience's questions for the Q&A.","shots":[{"t":"Exterior wide with price on screen","d":false},{"t":"3 quick problem shots","d":false},{"t":"Him: 'Comment yes or no'","d":false},{"t":"Part 2: his real answer and why","d":false}]}]},{"code":"40","name":"The 40 Doors","aud":"Investors","desc":"He's selling 40 rentals. That's a story people will follow, and the videos help sell the properties.","ideas":[{"t":"Why I'm Selling 40 Houses","lev":"High","hook":"I spent years buying 40 houses. Now I'm selling every one. Here's why.","fmt":"20–40 min sit-down + 5–8 shorts","loc":"Inside one of the rentals, empty unit","time":"2 hrs · edit 1–2 wks","gear":"2 cams, lav, car mount","why":"The big open loop of the whole channel. Every listing tour after this has context.","shots":[{"t":"Two-cam interview in an empty living room","d":false},{"t":"B-roll driving between properties","d":false},{"t":"Map graphic of where the doors are (no addresses)","d":false},{"t":"Keys / lockbox close-ups","d":false},{"t":"Ending: what he's doing with the money next","d":false}]},{"t":"Listing Tours","lev":"High","hook":"Investor-ready, tenant in place. Here's what's behind the walls.","fmt":"2–4 min walkthrough per property","loc":"Each rental being sold","time":"45 min each, batch 3 per day · edit 2 days","gear":"Gimbal, drone if legal, lav","why":"This content makes money directly. It's also the walkthrough slot in his monthly pipeline.","shots":[{"t":"Exterior drone or high wide","d":false},{"t":"Gimbal walk-through in one take","d":false},{"t":"Him pointing at mechanicals he updated","d":false},{"t":"Numbers card: rent, condition notes","d":false},{"t":"Contact card","d":false}]},{"t":"What 40 Doors Taught Me","lev":"Med","hook":"Tenants taught me more about business than any class at Howard.","fmt":"Short stories, 45–90 sec each","loc":"Pull from the long-form sit-down","time":"No extra shoot","gear":"None extra","why":"Crazy-client and crazy-house stories with no new shoot day.","shots":[{"t":"Cut from sit-down","d":false},{"t":"Overlay matching B-roll from listing tours","d":false}]}]},{"code":"CH","name":"The Church","aud":"Everyone","desc":"He owns a church and wants to turn it into something else. A documentary series that runs for months.","ideas":[{"t":"Episode 1: As It Stands","lev":"High","hook":"I bought a church. It's not going to stay a church.","fmt":"8–15 min doc episode","loc":"The church, golden hour + interior","time":"Half day · edit 1–2 wks","gear":"Cinema setup, gimbal, drone, lav","why":"Most cinematic subject he has, and the payoff (what it becomes) keeps people waiting.","shots":[{"t":"Establishing: steeple / sign, slow push","d":false},{"t":"Him unlocking the doors","d":false},{"t":"Walk the sanctuary while he explains what he sees it becoming","d":false},{"t":"Inspector eye: structure, roof, mechanicals","d":false},{"t":"Sit in a pew for the 'why' interview","d":false},{"t":"Hold on the empty room for the ending","d":false}]},{"t":"City Hall & the Plan","lev":"Med","hook":"Before a hammer swings, here's what the city has to sign off on.","fmt":"5–8 min","loc":"Church + outside city offices","time":"2 hrs · edit 1 wk","gear":"2 cams, top-down","why":"Doubles as B2B proof that he works with cities.","shots":[{"t":"Plans or sketches on a table","d":false},{"t":"Him explaining zoning and permits in plain words","d":false},{"t":"Exterior of city building","d":false},{"t":"Phone call recap to camera","d":false}]},{"t":"Time-lapse Diary","lev":"Steady","hook":"Same spot, every month.","fmt":"Ongoing 30 sec monthly","loc":"Fixed tripod mark in the sanctuary","time":"15 min per visit","gear":"Tripod, mark on floor","why":"Builds the before/after you'll need for the finale.","shots":[{"t":"Locked-off wide from the same mark","d":false},{"t":"One sentence update","d":false}]}]},{"code":"3L","name":"Three Licenses","aud":"Homeowners","desc":"Inspector, plumber and electrician. Few people can talk about a house from all three angles.","ideas":[{"t":"Fix It or Call Someone?","lev":"Med","hook":"This one you can fix with $8 from the hardware store. This one, call me.","fmt":"60 sec shorts, series","loc":"Flip or rental with real issues","time":"15 min each, batch 4","gear":"B-cam, lav, macro lens","why":"Useful to a huge audience and shows why his trade knowledge matters.","shots":[{"t":"The problem close-up","d":false},{"t":"His verdict: DIY or Call","d":false},{"t":"Quick how-to if DIY","d":false},{"t":"Why it's dangerous if Call","d":false}]},{"t":"What's in the Truck","lev":"Steady","hook":"Every tool in here is from a mistake I made once.","fmt":"2–3 min","loc":"His truck / van","time":"45 min","gear":"B-cam, small LED","why":"Easy personality piece; the tool stories are small loops.","shots":[{"t":"Tailgate drop wide","d":false},{"t":"Close-ups of tools with one story each","d":false},{"t":"Him closing the doors","d":false}]},{"t":"Inspector vs. Electrician","lev":"Med","hook":"As an inspector, I'd flag this. As an electrician, here's what I'd actually do.","fmt":"90 sec","loc":"Any panel or plumbing run","time":"20 min","gear":"Tripod for matched takes","why":"A format only he can do.","shots":[{"t":"Two takes of him, wearing the two hats","d":false},{"t":"Split screen edit","d":false},{"t":"Close-up of the issue","d":false}]}]},{"code":"EE","name":"Energy Efficiency","aud":"B2B / cities","desc":"His new sector. Content here is for partners, landlords and cities, so it carries the professional look.","ideas":[{"t":"Where Your House Leaks Money","lev":"High","hook":"Your house has a hole you can't see. Your bill can.","fmt":"4–6 min + 3 shorts","loc":"An older home in winter (best contrast for thermal shots)","time":"2 hrs · edit 1 wk","gear":"Thermal camera (his or rented), lav","why":"Winter is the right time to shoot this. Connects his inspector eye to the new business.","shots":[{"t":"Exterior in cold weather","d":false},{"t":"Thermal camera reveals","d":false},{"t":"Hand at drafty outlets / windows","d":false},{"t":"Him explaining the fix and rough payoff","d":false},{"t":"Before/after if a job is done","d":false}]},{"t":"Building the Championship Team","lev":"Med","hook":"I can't do this alone. Meet who I'd want on the field.","fmt":"Series of 2 min profiles","loc":"Job sites with each team member","time":"1 hr per person","gear":"2 cams, 2 lavs","why":"Shows B2B clients the bench behind him.","shots":[{"t":"Each person working","d":false},{"t":"Short interview: what they do","d":false},{"t":"Russ on why he picked them","d":false},{"t":"Group shot ending","d":false}]},{"t":"Working With Cities","lev":"Med","hook":"Here's what a city looks for before it hands you a contract.","fmt":"3–5 min talking head","loc":"Office or a city project site","time":"1 hr","gear":"2 cams, lav","why":"Built for the people who sign contracts, not for views. Send it directly in outreach.","shots":[{"t":"Seated interview","d":false},{"t":"B-roll of a project","d":false},{"t":"Documents / plans inserts","d":false}]}]},{"code":"MB","name":"Mindset & Business","aud":"Entrepreneurs","desc":"The podcast he wants: entrepreneurs, mindset, his own road from Howard to a 9-to-5 to his own name.","ideas":[{"t":"Monthly Sit-Down (the podcast)","lev":"High","hook":"I had a good 9-to-5. Leaving it was the scariest thing I've done.","fmt":"30–60 min long-form + 6–10 shorts","loc":"Same set each month (his office, or the church once it's ready)","time":"2 hrs · edit 1–2 wks","gear":"3 cams, 2 podcast mics, lights","why":"One recording feeds every platform for a month.","shots":[{"t":"3-cam setup: wide, Russ, guest/host","d":false},{"t":"Podcast mics in frame","d":false},{"t":"Inserts of photos from his past (Howard, early jobs)","d":false},{"t":"Cutaways recorded on Field Day","d":false}]},{"t":"Failing the Builder's Test","lev":"High","hook":"I failed the test. Here's what I did the next morning.","fmt":"90 sec story + longer cut","loc":"Pulled from sit-down, B-roll at a job site","time":"Covered by sit-down","gear":"None extra","why":"Losses and sacrifices. People share comeback stories.","shots":[{"t":"Story from sit-down","d":false},{"t":"B-roll: him studying / paperwork","d":false},{"t":"Present-day shot of him on a job","d":false}]},{"t":"Guest Episodes","lev":"Med","hook":"Two people who left the 9-to-5. Different reasons.","fmt":"45 min + shorts","loc":"Same podcast set","time":"2 hrs per guest","gear":"Same as sit-down","why":"Guests share it to their audience. Start with people on his own team.","shots":[{"t":"Same 3-cam setup","d":false},{"t":"Guest walk-in","d":false},{"t":"Handshake ending","d":false}]}]},{"code":"FM","name":"Family Man","aud":"Everyone","desc":"Brand-building pieces. The reason behind everything else. Lands harder when it's rare.","ideas":[{"t":"Why I Do This","lev":"Med","hook":"People think I do this for the money. Watch where I go after work.","fmt":"60–90 sec voice-over film","loc":"Home, end of a workday (only what he's comfortable showing)","time":"1–2 hrs · edit 1 wk","gear":"Cinema setup, quiet audio for VO","why":"The brand voice-over slot. The polished look fits best here.","shots":[{"t":"Truck pulling in at dusk","d":false},{"t":"Boots off at the door","d":false},{"t":"Wide, unposed moments (no kids' faces unless OK'd)","d":false},{"t":"Voice-over recorded separately","d":false}]},{"t":"Client Testimonials","lev":"Med","hook":"I almost bought a house that would've cost me everything. Then Russ walked in.","fmt":"60 sec per client","loc":"Client's home after closing","time":"30 min each","gear":"2 cams, lav","why":"Other people saying it beats him saying it.","shots":[{"t":"Client interview","d":false},{"t":"Russ and client walking the house","d":false},{"t":"Keys / move-in moment","d":false}]},{"t":"Monthly Update","lev":"Steady","hook":"This month: a flip, a sale, and the strangest thing I found in a basement.","fmt":"3–5 min recap","loc":"Truck or office","time":"30 min · edit 2 days","gear":"Phone or B-cam","why":"Ties every running story together and keeps viewers caught up.","shots":[{"t":"Talking head, casual","d":false},{"t":"Clips from every shoot that month","d":false},{"t":"One crazy-house story","d":false}]}]}],"daysIntro":"Most usable pieces per hour of his time. He makes his money in the field, so we never ask for a day just for content. Ideas are stacked by location.","days":[{"name":"Field Day","freq":"Monthly · 6–8 hrs","stops":["Ride along on a real inspection (In the Field)","Batch 3–4 Russ Approved + Fix It or Call Someone shorts at the same house","Drive to the current flip: Deal on the Wall or Flip Progress Log","Swing by 2–3 rentals for 40 Doors listing tours","Proof shots and B-roll for the sit-down"],"yield":"≈ 1 long + 2 walkthroughs + 8–10 shorts"},{"name":"Sit-Down Day","freq":"Monthly · 3 hrs","stops":["Monthly podcast recording","Record Monthly Update at the end while set is lit","Grab any brand voice-over lines"],"yield":"≈ 1 long-form + 6–10 shorts + update"},{"name":"Church Day","freq":"Every 6–8 weeks · half day","stops":["Time-lapse diary from the fixed mark","Next doc episode scene","Any city / plans conversation"],"yield":"≈ 1 doc episode + 2 shorts"},{"name":"Winter Energy Day","freq":"Once, Dec–Feb","stops":["Cold-weather thermal shoot at an older house","Team profile at the same job","Working With Cities interview"],"yield":"≈ 1 B2B piece + 3 shorts + profiles"}],"calIntro":"Each month: 1 long-form, 1 series piece, 1 walkthrough, 1 brand piece. Shorts come out of all four.","calHead":["Month","Long-form","Series piece","Walkthrough","Brand piece"],"cal":[["Dec 2026","From the 9-to-5 to my own name on the truck","In the Field, ep. 1","40 Doors: first listing tour","Why I do this"],["Jan 2027","Why I'm selling 40 houses","Russ Runs the Numbers, ep. 1","The Church, ep. 1: as it stands","Failing the builder's test"]]}</script>
+<script id="app-script">
+(function(){
+const RESET=':root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}';
+const orig=document.getElementById("state").textContent;
+let S=JSON.parse(orig);
+try{const c=JSON.parse(localStorage.getItem("kjr-checks")||"{}");S.niches.forEach((n,ni)=>n.ideas.forEach((d,ii)=>d.shots.forEach((x,k)=>{const v=c[ni+"-"+ii+"-"+k];if(v!==undefined)x.d=v})))}catch(e){}
+let NOTES={};try{NOTES=JSON.parse(localStorage.getItem("kjr-notes")||"{}")}catch(e){}
+const DRAFT={};
+function noteBox(key,label){
+  const list=(NOTES[key]||[]).map(n=>`<div class="nt">${esc(n.t)}<small>Sent ${esc(n.at)}</small></div>`).join("");
+  return `<div class="nl">${list}</div><textarea id="note-${key}" data-note="${key}" placeholder="Idea, change, or question for Citystar…">${esc(DRAFT[key]||"")}</textarea><div class="nrow"><button class="primary mini" data-sendnote="${key}" data-label="${esc(label)}">Send note</button></div>`;
+}
+async function sendNote(key,label,btn){
+  const ta=document.getElementById("note-"+key);const t=(ta&&ta.value||"").trim();
+  if(!t){toast("Write a note first");return}
+  btn.disabled=true;btn.textContent="Sending…";
+  try{
+    const r=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams({"form-name":"russ-notes",idea:label,note:t}).toString()});
+    if(!r.ok)throw new Error(r.status);
+    (NOTES[key]=NOTES[key]||[]).push({t,at:new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"})});
+    try{localStorage.setItem("kjr-notes",JSON.stringify(NOTES))}catch(e){}
+    DRAFT[key]="";toast("Sent to Citystar");render();
+  }catch(e){btn.disabled=false;btn.textContent="Send note";toast("Couldn't send. Check your signal and try again.")}
+}
+function saveChecks(){const c={};S.niches.forEach((n,ni)=>n.ideas.forEach((d,ii)=>d.shots.forEach((x,k)=>{if(x.d)c[ni+"-"+ii+"-"+k]=true})));try{localStorage.setItem("kjr-checks",JSON.stringify(c))}catch(e){}render()}
+let view="niches", active="ALL", editing=false, dirty=false, canEdit=false, artifactNS=null, saving=false;
+const open=new Set();
+try{view=sessionStorage.getItem("kjv")||"niches"}catch(e){}
+const app=document.getElementById("app");
+const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const E=(p,v,tag="span",cls="")=>editing?`<${tag} class="${cls}" data-p="${p}" contenteditable="plaintext-only" spellcheck="true">${esc(v)}</${tag}>`:`<${tag} class="${cls}">${esc(v)}</${tag}>`;
+function setPath(p,v){const k=p.split(".");let o=S;for(let i=0;i<k.length-1;i++)o=o[k[i]];o[k[k.length-1]]=v}
+function getPath(p){return p.split(".").reduce((o,k)=>o[k],S)}
+const TABS=[["niches","Niches & Ideas","Ideas"],["days","Shoot Days","Days"],["cal","Rollout","Rollout"]];
+
+function render(){
+  const y=window.scrollY;
+  app.className=editing?"editing":"";
+  app.innerHTML=`
+  <header class="top"><div class="wrap">
+    <div class="brandrow">
+      <div class="brand"><small>Citystar Productions</small><b>${esc(S.title)}</b></div>
+      <div class="actions">${canEdit?`<button id="editBtn" aria-pressed="${editing}">${editing?"Editing":"Edit"}</button>`:""}</div>
+    </div>
+    <nav class="tabs" role="tablist">${TABS.map(t=>`<button class="tab" role="tab" id="tab-${t[0]}" data-v="${t[0]}" aria-selected="${view===t[0]}">${t[1]}</button>`).join("")}</nav>
+  </div></header>
+  <main class="wrap">${view==="niches"?niches():view==="days"?days():cal()}</main>
+  <nav class="bbar">${TABS.map(t=>`<button data-v="${t[0]}" ${view===t[0]?'aria-current="page"':""}>${t[2]}</button>`).join("")}</nav>
+  ${editing?`<div class="editbar"><span>${dirty?"Unsaved changes":"Tap any text to change it"}</span><button id="cancelBtn" class="mini">Cancel</button><button id="saveBtn" class="mini primary" ${saving?"disabled":""}>${saving?"Saving…":"Save"}</button></div>`:""}`;
+  window.scrollTo(0,y);
+}
+function hello(){return `<section class="hello"><h1>${E("title",S.title)}</h1><p>${E("sub",S.sub)}</p></section>`}
+function niches(){
+  const chips=`<div class="filters"><button class="chip" data-c="ALL" aria-pressed="${active==="ALL"}">All Content Ideas</button>${S.niches.map((n,i)=>`<button class="chip" data-c="${i}" aria-pressed="${String(active)===String(i)}"><span class="code">${esc(n.code)}</span>${esc(n.name)}</button>`).join("")}</div>`;
+  const lanes=S.niches.map((n,ni)=>{if(active!=="ALL"&&String(active)!==String(ni))return "";return `
+   <section class="lane"><div class="lanehead">
+     <div class="row1">${E(`niches.${ni}.code`,n.code,"span","code")}<h2>${E(`niches.${ni}.name`,n.name)}</h2>${editing?`<button class="x" data-delniche="${ni}" title="Delete niche" aria-label="Delete niche">✕</button>`:""}</div>
+     <span class="aud">For ${E(`niches.${ni}.aud`,n.aud)}</span><p>${E(`niches.${ni}.desc`,n.desc)}</p></div>
+     <div class="grid">${n.ideas.map((d,ii)=>idea(d,ni,ii)).join("")}</div>
+     ${editing?`<div class="addrow"><button class="mini" data-addidea="${ni}">+ Add idea</button></div>`:""}
+   </section>`}).join("");
+  return hello()+`<div class="gnote"><h3>Got an idea or a change?</h3><p>Send it straight to Citystar. You can also add notes inside any idea below.</p>${noteBox("general","General")}</div>`+chips+lanes+(editing?`<div class="addrow"><button class="primary" id="addNiche">+ Add niche</button></div>`:"");
+}
+const n_name=ni=>S.niches[ni].name;
+function idea(d,ni,ii){
+  const id=`${ni}-${ii}`, p=`niches.${ni}.ideas.${ii}`, done=d.shots.filter(s=>s.d).length;
+  const lev=editing?`<select class="lv" data-lev="${p}" aria-label="Leverage">${["High","Med","Steady"].map(v=>`<option ${d.lev===v?"selected":""}>${v}</option>`).join("")}</select>`:`<span class="pill lev">${d.lev==="Steady"?"Steady":d.lev+" leverage"}</span>`;
+  const head=`<h3>${E(p+".t",d.t)}</h3><div class="meta">${lev}<span class="pill">${E(p+".fmt",d.fmt)}</span><span class="pill prog">${done}/${d.shots.length} shots</span>${editing?`<button class="x" data-delidea="${ni}.${ii}" title="Delete idea" aria-label="Delete idea">✕</button>`:""}</div><p class="hook"><b>Hook</b>${E(p+".hook",d.hook)}</p>`;
+  const body=`<div class="cb"><div><h4>Shot list</h4><ul class="shots">${d.shots.map((s,k)=>`<li class="${s.d?"done":""}"><input type="checkbox" id="s-${id}-${k}" data-shot="${p}.shots.${k}" ${s.d?"checked":""}  aria-label="Shot done">${E(`${p}.shots.${k}.t`,s.t,"span","st")}${editing?`<button class="x" data-delshot="${p}.${k}" aria-label="Delete shot">✕</button>`:"<span></span>"}</li>`).join("")}</ul>${editing?`<button class="mini" data-addshot="${p}" style="margin-top:6px">+ Add shot</button>`:""}</div>
+   <dl><dt>Location</dt><dd>${E(p+".loc",d.loc)}</dd><dt>Time</dt><dd>${E(p+".time",d.time)}</dd><dt>Gear</dt><dd>${E(p+".gear",d.gear)}</dd></dl>
+   <p class="why"><b>Why</b>${E(p+".why",d.why)}</p>
+   <div class="notes"><h4>Notes</h4>${noteBox("i-"+id,n_name(ni)+" / "+d.t)}</div></div>`;
+  if(editing) return `<div class="card ${d.lev}"><div class="ch">${head}</div>${body}</div>`;
+  return `<details class="card ${d.lev}" data-id="${id}" ${open.has(id)?"open":""}><summary>${head}</summary>${body}</details>`;
+}
+function days(){
+  return `<section class="hello"><h1>Shoot Days</h1><p>${E("daysIntro",S.daysIntro)}</p></section>
+  <div class="days">${S.days.map((d,i)=>`<div class="tile ${i===0?"ink":""}"><span class="cap">${E(`days.${i}.freq`,d.freq)}</span><h3>${E(`days.${i}.name`,d.name)}</h3>
+   <ol>${d.stops.map((s,k)=>`<li>${E(`days.${i}.stops.${k}`,s)}${editing?` <button class="x" data-delstop="${i}.${k}" aria-label="Delete stop">✕</button>`:""}</li>`).join("")}</ol>
+   ${editing?`<div class="addrow"><button class="mini" data-addstop="${i}">+ Add stop</button><button class="mini" data-delday="${i}">Delete day</button></div>`:""}
+   <span class="yield">${E(`days.${i}.yield`,d.yield)}</span></div>`).join("")}</div>
+  ${editing?`<div class="addrow"><button class="primary" id="addDay">+ Add shoot day</button></div>`:""}`;
+}
+function cal(){
+  return `<section class="hello"><h1>Rollout</h1><p>${E("calIntro",S.calIntro)}</p></section>
+  <div class="tablewrap"><table><thead><tr>${S.calHead.map((h,i)=>`<th>${E(`calHead.${i}`,h)}</th>`).join("")}${editing?"<th></th>":""}</tr></thead>
+  <tbody>${S.cal.map((r,ri)=>`<tr>${r.map((c,ci)=>`<td>${ci===0?"<b>":""}${E(`cal.${ri}.${ci}`,c)}${ci===0?"</b>":""}</td>`).join("")}${editing?`<td><button class="x" data-delrow="${ri}" aria-label="Delete month">✕</button></td>`:""}</tr>`).join("")}</tbody></table></div>
+  ${editing?`<div class="addrow"><button class="primary" id="addRow">+ Add month</button></div>`:""}`;
+}
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
+function mark(){if(!dirty){dirty=true;const s=document.querySelector(".editbar span");if(s)s.textContent="Unsaved changes"}}
+
+app.addEventListener("input",e=>{if(e.target.dataset&&e.target.dataset.note!==undefined){DRAFT[e.target.dataset.note]=e.target.value;return}const el=e.target.closest("[data-p]");if(!el)return;setPath(el.dataset.p,el.textContent);mark()});
+app.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.closest("[data-p]")){e.preventDefault();e.target.blur()}});
+app.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.dataset.lev){getPath(t.dataset.lev).lev=t.value;mark();render();return}
+  if(t.dataset.shot){getPath(t.dataset.shot).d=t.checked;t.closest("li").classList.toggle("done",t.checked);
+    saveChecks()}
+});
+app.addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.id){d.open?open.add(d.dataset.id):open.delete(d.dataset.id)}},true);
+app.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.sendnote){sendNote(b.dataset.sendnote,b.dataset.label,b);return}
+  if(b.dataset.v){view=b.dataset.v;try{sessionStorage.setItem("kjv",view)}catch(_){}render();window.scrollTo(0,0);return}
+  if(b.dataset.c!==undefined){active=b.dataset.c;render();return}
+  if(b.id==="editBtn"){if(editing&&dirty){toast("Save or cancel first");return}editing=!editing;render();return}
+  if(b.id==="cancelBtn"){S=JSON.parse(orig);dirty=false;editing=false;render();return}
+  if(b.id==="saveBtn"){save(false);return}
+  const ch=()=>{mark();render()};
+  if(b.dataset.addidea){S.niches[+b.dataset.addidea].ideas.push({t:"New idea",lev:"Med",hook:"",fmt:"",loc:"",time:"",gear:"",why:"",shots:[{t:"First shot",d:false}]});return ch()}
+  if(b.dataset.delidea){const[a,c]=b.dataset.delidea.split(".").map(Number);S.niches[a].ideas.splice(c,1);return ch()}
+  if(b.dataset.delniche){S.niches.splice(+b.dataset.delniche,1);active="ALL";return ch()}
+  if(b.id==="addNiche"){S.niches.push({code:"NEW",name:"New niche",aud:"Everyone",desc:"",ideas:[]});return ch()}
+  if(b.dataset.addshot){getPath(b.dataset.addshot).shots.push({t:"New shot",d:false});return ch()}
+  if(b.dataset.delshot){const i=b.dataset.delshot.lastIndexOf(".");getPath(b.dataset.delshot.slice(0,i)).shots.splice(+b.dataset.delshot.slice(i+1),1);return ch()}
+  if(b.dataset.addstop){S.days[+b.dataset.addstop].stops.push("New stop");return ch()}
+  if(b.dataset.delstop){const[a,c]=b.dataset.delstop.split(".").map(Number);S.days[a].stops.splice(c,1);return ch()}
+  if(b.dataset.delday){S.days.splice(+b.dataset.delday,1);return ch()}
+  if(b.id==="addDay"){S.days.push({name:"New shoot day",freq:"",stops:["First stop"],yield:""});return ch()}
+  if(b.dataset.delrow){S.cal.splice(+b.dataset.delrow,1);return ch()}
+  if(b.id==="addRow"){S.cal.push(S.calHead.map((_,i)=>i===0?"New month":""));return ch()}
+});
+
+function buildDoc(){
+  const style=document.getElementById("app-style").textContent;
+  const script=document.getElementById("app-script").textContent;
+  const font=document.getElementById("fontlink").outerHTML;
+  const json=JSON.stringify(S).replace(/</g,"\\u003c");
+  const t=esc(S.title||"KJ Russ Content Strategy");
+  return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>'+RESET+'</style></head><body>'
+   +'<title>'+t+'</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'+font+'\n<style id="app-style">'+style+'</style>\n<div id="app"></div>\n'
+   +'<script id="state" type="application/json">'+json+'<\/script>\n<script id="app-script">'+script+'<\/script></body></html>';
+}
+let tick=null;
+async function save(quiet){
+  if(!artifactNS){toast("Saving isn't available here");return}
+  if(quiet){clearTimeout(tick);tick=setTimeout(()=>save(false),1200);return}
+  saving=true;if(editing)render();
+  try{await artifactNS.publish(buildDoc());dirty=false;toast("Saved")}
+  catch(err){saving=false;const c=err&&err.code;
+    if(c==="conflict")toast("Someone saved at the same time. Reloading their version.");
+    else if(c==="not_granted"||c==="not_writer")toast("Only editors can save changes.");
+    else toast("Couldn't save. Check your connection and try again.");
+    render()}
+}
+render();
+if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{})}
+})();
+</script>
+</body></html>
