@@ -127,6 +127,25 @@ select.lv{font:600 12px var(--f-body);border-radius:8px;border:1px solid var(--l
 .gnote{background:var(--panel);color:var(--fg);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:8px}
 .gnote h3{margin:0;font:800 17px var(--f-body)}
 .gnote p{margin:0;color:var(--muted);font-size:13.5px}
+/* install guide */
+.ig-scrim{position:fixed;inset:0;background:rgba(5,20,24,.6);z-index:40}
+.ig{position:fixed;left:0;right:0;bottom:0;z-index:41;max-width:520px;margin:0 auto;background:var(--panel);color:var(--fg);border-radius:24px 24px 0 0;padding:22px 22px calc(24px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:14px}
+.ig .grab{width:44px;height:5px;border-radius:3px;background:var(--line);margin:-8px auto 2px}
+.ig .appic{display:flex;align-items:center;gap:12px}
+.ig .appic img{width:56px;height:56px;border-radius:13px}
+.ig h3{margin:0;font:800 21px/1.15 var(--f-body)}
+.ig p{margin:0;color:var(--muted);font-size:14px}
+.ig ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.ig li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.ig li em{font-style:normal;flex:none;width:28px;height:28px;border-radius:9px 9px 9px 3px;background:var(--hl);color:var(--hl-ink);display:grid;place-items:center;font:800 14px var(--f-body)}
+.ig li b{font-weight:700}
+.ig svg{width:18px;height:18px;vertical-align:-3px;margin:0 2px}
+.ig .acts{display:flex;gap:8px}
+.ig .acts button{flex:1;padding:12px;font-size:15px}
+.ig-arrow{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom,0px));z-index:42;color:var(--hl);font:800 28px/1 var(--f-body);animation:bob 1.2s ease-in-out infinite;pointer-events:none}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+@media (prefers-reduced-motion:reduce){.ig-arrow{animation:none}}
+.helpbtn{background:none!important;border:0!important;color:var(--hl)!important;font:700 13px var(--f-body)!important;padding:4px 0!important;text-decoration:underline}
 /* phone */
 .bbar{display:none}
 @media (max-width:760px){
@@ -170,6 +189,39 @@ async function sendNote(key,label,btn){
     DRAFT[key]="";toast("Sent to Citystar");render();
   }catch(e){btn.disabled=false;btn.textContent="Send note";toast("Couldn't send. Check your signal and try again.")}
 }
+const SHARE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m8 7 4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>';
+const PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+const isStandalone=()=>window.matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+const UA=navigator.userAgent;
+const isIOS=/iPhone|iPad|iPod/.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+const isAndroid=/Android/.test(UA);
+const inApp=/Instagram|FBAN|FBAV|Line\/|Snapchat|TikTok|LinkedInApp|GSA\//.test(UA);
+const iosOther=isIOS&&/CriOS|FxiOS|EdgiOS/.test(UA);
+let deferredPrompt=null, igOpen=false;
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;if(igOpen)renderIG()});
+function igBody(){
+  if(inApp) return `<p>This link opened inside another app, which can't add it to your home screen.</p><ol><li><em>1</em><span>Tap the <b>⋯</b> or <b>${SHARE}</b> menu in the corner</span></li><li><em>2</em><span>Choose <b>Open in Safari</b> (or <b>Open in browser</b>)</span></li><li><em>3</em><span>This guide will pop up again there</span></li></ol>`;
+  if(isIOS) return `<ol><li><em>1</em><span>Tap the <b>Share</b> button ${SHARE} ${iosOther?"in the menu or address bar":"at the bottom of Safari"}</span></li><li><em>2</em><span>Scroll down and tap <b>Add to Home Screen</b> ${PLUS}</span></li><li><em>3</em><span>Tap <b>Add</b>. The KJ icon shows up on your home screen.</span></li></ol>`;
+  if(isAndroid&&deferredPrompt) return `<p>One tap and it's on your home screen.</p>`;
+  if(isAndroid) return `<ol><li><em>1</em><span>Tap the <b>⋮</b> menu at the top right of Chrome</span></li><li><em>2</em><span>Tap <b>Add to Home screen</b> (or <b>Install app</b>)</span></li><li><em>3</em><span>Tap <b>Add</b>. The KJ icon shows up on your home screen.</span></li></ol>`;
+  return `<p>Open this link on your phone to add it to your home screen. On a computer you can use it right here.</p>`;
+}
+function renderIG(){
+  document.querySelectorAll(".ig,.ig-scrim,.ig-arrow").forEach(n=>n.remove());
+  if(!igOpen)return;
+  const wrap=document.createElement("div");
+  const primary=isAndroid&&deferredPrompt&&!inApp?`<button class="primary" id="igInstall">Add to Home Screen</button>`:`<button class="primary" id="igDone">Got it</button>`;
+  wrap.innerHTML=`<div class="ig-scrim" id="igScrim"></div><div class="ig" role="dialog" aria-modal="true" aria-labelledby="igT"><div class="grab"></div>
+   <div class="appic"><img src="/apple-touch-icon.png" alt=""><div><h3 id="igT">Put this on your home screen</h3><p>Opens like an app. Works with no signal.</p></div></div>
+   ${igBody()}<div class="acts"><button id="igLater">Not now</button>${primary}</div></div>
+   ${isIOS&&!iosOther&&!inApp?'<div class="ig-arrow" aria-hidden="true">↓</div>':""}`;
+  document.body.appendChild(wrap);
+  const close=()=>{igOpen=false;try{localStorage.setItem("kjr-ig","1")}catch(e){}renderIG()};
+  ["igLater","igDone","igScrim"].forEach(id=>{const el=document.getElementById(id);if(el)el.onclick=close});
+  const ib=document.getElementById("igInstall");
+  if(ib)ib.onclick=async()=>{deferredPrompt.prompt();try{await deferredPrompt.userChoice}catch(e){}deferredPrompt=null;close()};
+}
+function openIG(){igOpen=true;renderIG()}
 function saveChecks(){const c={};S.niches.forEach((n,ni)=>n.ideas.forEach((d,ii)=>d.shots.forEach((x,k)=>{if(x.d)c[ni+"-"+ii+"-"+k]=true})));try{localStorage.setItem("kjr-checks",JSON.stringify(c))}catch(e){}render()}
 let view="niches", active="ALL", editing=false, dirty=false, canEdit=false, artifactNS=null, saving=false;
 const open=new Set();
@@ -188,7 +240,7 @@ function render(){
   <header class="top"><div class="wrap">
     <div class="brandrow">
       <div class="brand"><small>Citystar Productions</small><b>${esc(S.title)}</b></div>
-      <div class="actions">${canEdit?`<button id="editBtn" aria-pressed="${editing}">${editing?"Editing":"Edit"}</button>`:""}</div>
+      <div class="actions">${!isStandalone()?`<button class="helpbtn" id="igOpen">Add to Home Screen</button>`:""}${canEdit?`<button id="editBtn" aria-pressed="${editing}">${editing?"Editing":"Edit"}</button>`:""}</div>
     </div>
     <nav class="tabs" role="tablist">${TABS.map(t=>`<button class="tab" role="tab" id="tab-${t[0]}" data-v="${t[0]}" aria-selected="${view===t[0]}">${t[1]}</button>`).join("")}</nav>
   </div></header>
@@ -249,6 +301,7 @@ app.addEventListener("change",e=>{
 app.addEventListener("toggle",e=>{const d=e.target;if(d.dataset&&d.dataset.id){d.open?open.add(d.dataset.id):open.delete(d.dataset.id)}},true);
 app.addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;
+  if(b.id==="igOpen"){openIG();return}
   if(b.dataset.sendnote){sendNote(b.dataset.sendnote,b.dataset.label,b);return}
   if(b.dataset.v){view=b.dataset.v;try{sessionStorage.setItem("kjv",view)}catch(_){}render();window.scrollTo(0,0);return}
   if(b.dataset.c!==undefined){active=b.dataset.c;render();return}
@@ -293,6 +346,8 @@ async function save(quiet){
     render()}
 }
 render();
+let seen=null;try{seen=localStorage.getItem("kjr-ig")}catch(e){}
+if(!isStandalone()&&!seen&&(isIOS||isAndroid))setTimeout(openIG,700);
 if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{})}
 })();
 </script>
